@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Jadwal Operasional - Kopi Senja</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+
+            background: #eee2f5;
+
+            color: #29212b;
+
+            line-height: 1.8;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            text-align: center;
+
+            padding: 35px 20px 30px;
+
+            background: linear-gradient(
+                180deg,
+                #f8f0fb,
+                #eee2f5
+            );
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            width: 180px;
+            height: 180px;
+
+            object-fit: contain;
+
+            display: block;
+
+            margin: 0 auto 18px;
+
+            background: white;
+
+            padding: 10px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 8px 22px rgba(60,40,70,0.15);
+        }
+
+
+        /* NAMA CAFE */
+
+        .brand {
+            font-family: Georgia, serif;
+
+            font-size: 27px;
+
+            letter-spacing: 2px;
+
+            color: #3d2945;
+        }
+
+        .subtitle {
+            font-size: 14px;
+
+            color: #806b86;
+
+            letter-spacing: 3px;
+
+            text-transform: uppercase;
+        }
+
+
+        /* =========================
+           NAVIGASI
+        ========================= */
+
+        nav {
+            margin-top: 22px;
+        }
+
+        nav a {
+            color: #5d356b;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            font-size: 16px;
+
+            margin: 0 7px;
+        }
+
+        nav a:hover {
+            color: #a56bbb;
+        }
+
+        .separator {
+            color: #b89ac3;
+        }
+
+
+        /* =========================
+           JUDUL HALAMAN
+        ========================= */
+
+        .page-title {
+            text-align: center;
+
+            padding: 55px 20px 35px;
+        }
+
+        .page-title small {
+            display: block;
+
+            text-transform: uppercase;
+
+            letter-spacing: 4px;
+
+            font-size: 13px;
+
+            color: #96749f;
+
+            margin-bottom: 10px;
+        }
+
+        .page-title h1 {
+            font-family: Georgia, serif;
+
+            font-size: 38px;
+
+            color: #35223b;
+        }
+
+        .page-title p {
+            margin-top: 10px;
+
+            color: #76627b;
+
+            font-style: italic;
+        }
+
+
+        /* =========================
+           GARIS DEKORASI
+        ========================= */
+
+        .decor {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 12px;
+
+            margin: 20px 0;
+        }
+
+        .decor span {
+            width: 55px;
+
+            height: 1px;
+
+            background: #c39acb;
+        }
+
+        .decor b {
+            color: #9b5baa;
+
+            font-size: 18px;
+        }
+
+
+        /* =========================
+           KONTEN JADWAL
+        ========================= */
+
+        .schedule-section {
+            max-width: 800px;
+
+            margin: auto;
+
+            padding: 20px 20px 70px;
+        }
+
+
+        .schedule-box {
+            background: rgba(255,255,255,0.65);
+
+            border-radius: 25px;
+
+            padding: 25px;
+
+            box-shadow:
+                0 10px 30px rgba(70,40,80,0.10);
+        }
+
+
+        .schedule-box h2 {
+            text-align: center;
+
+            font-family: Georgia, serif;
+
+            font-size: 26px;
+
+            color: #57345f;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           TABEL
+        ========================= */
+
+        table {
+            width: 100%;
+
+            border-collapse: collapse;
+
+            overflow: hidden;
+
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.55);
+        }
+
+        th {
+            background: #684473;
+
+            color: white;
+
+            padding: 17px 12px;
+
+            text-align: left;
+
+            font-size: 16px;
+        }
+
+        td {
+            padding: 18px 12px;
+
+            border-bottom: 1px solid #dbc9df;
+
+            color: #433747;
+
+            font-size: 16px;
+        }
+
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+
+        tr:hover td {
+            background: #f5edf7;
+        }
+
+
+        /* =========================
+           STATUS BUKA
+        ========================= */
+
+        .open {
+            display: inline-block;
+
+            padding: 4px 12px;
+
+            border-radius: 20px;
+
+            background: #e6d5eb;
+
+            color: #63396f;
+
+            font-size: 13px;
+
+            font-weight: bold;
+        }
+
+
+        /* =========================
+           CATATAN
+        ========================= */
+
+        .note {
+            margin-top: 25px;
+
+            padding: 18px 20px;
+
+            border-left: 4px solid #9b5baa;
+
+            background: rgba(255,255,255,0.45);
+
+            border-radius: 0 15px 15px 0;
+
+            color: #66546b;
+
+            font-size: 14px;
+        }
+
+
+        /* =========================
+           QUOTE
+        ========================= */
+
+        .quote {
+            text-align: center;
+
+            margin-top: 35px;
+
+            padding: 25px 15px;
+
+            border-top: 1px solid #d4b8da;
+
+            border-bottom: 1px solid #d4b8da;
+        }
+
+        .quote p {
+            font-family: Georgia, serif;
+
+            font-size: 20px;
+
+            font-style: italic;
+
+            color: #62486a;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            text-align: center;
+
+            padding: 30px 20px;
+
+            background: #39283d;
+
+            color: #eee4f0;
+
+            font-size: 14px;
+        }
+
+        footer strong {
+            color: #d8b7df;
+        }
+
+
+        /* =========================
+           TAMPILAN HP
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            .logo {
+                width: 165px;
+                height: 165px;
+            }
+
+            .brand {
+                font-size: 24px;
+            }
+
+            .page-title {
+                padding: 45px 15px 25px;
+            }
+
+            .page-title h1 {
+                font-size: 32px;
+            }
+
+            .schedule-section {
+                padding: 15px 15px 60px;
+            }
+
+            .schedule-box {
+                padding: 18px;
+            }
+
+            th,
+            td {
+                padding: 14px 10px;
+
+                font-size: 15px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header>
+
+        <!-- GANTI logo.png DENGAN NAMA FILE LOGO KAMU -->
+
+        <img
+            src="logobil (1).png"
+            alt="logobil.png"
+            class="logo"
+        >
+
+
+        <h2 class="brand">
+            KOPI SENJA
+        </h2>
+
+        <p class="subtitle">
+            Cafe & Coffee
+        </p>
+
+
+        <!-- NAVIGASI -->
+
+        <nav>
+
+            <a href="index.html">
+                Beranda
+            </a>
+
+            <span class="separator">|</span>
+
+            <a href="jadwal.html">
+                Jadwal Operasional
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =========================
+         JUDUL
+    ========================== -->
+
+    <section class="page-title">
+
+        <small>
+            Waktu terbaik untuk berkunjung
+        </small>
+
+        <h1>
+            Jam Operasional Kedai
+        </h1>
+
+        <div class="decor">
+            <span></span>
+            <b>☕</b>
+            <span></span>
+        </div>
+
+        <p>
+            “Kami siap menemani harimu dengan secangkir kopi.”
+        </p>
+
+    </section>
+
+
+
+    <!-- =========================
+         JADWAL
+    ========================== -->
+
+    <section class="schedule-section">
+
+        <div class="schedule-box">
+
+            <h2>
+                Jadwal Buka
+            </h2>
+
+
+            <table>
+
+                <tr>
+
+                    <th>
+                        Hari
+                    </th>
+
+                    <th>
+                        Jam Buka
+                    </th>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Senin - Jumat
+                    </td>
+
+                    <td>
+                        09.00 - 22.00
+                        <br>
+
+                        <span class="open">
+                            Buka
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>
+                        Sabtu - Minggu
+                    </td>
+
+                    <td>
+                        10.00 - 24.00
+                        <br>
+
+                        <span class="open">
+                            Buka
+                        </span>
+                    </td>
+
+                </tr>
+
+            </table>
+
+
+            <div class="note">
+
+                <strong>☕ Catatan</strong>
+
+                <br>
+
+                Format waktu menggunakan WIB
+                (Waktu Indonesia Barat).
+
+            </div>
+
+
+        </div>
+
+
+        <div class="quote">
+
+            <p>
+                “Datang saat senja,
+                pulang membawa cerita.”
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+            ☕ <strong>Kopi Senja Cafe & Coffee</strong>
+        </p>
+
+        <p>
+            Tempat ngopi • berdiskusi • mengerjakan tugas
+        </p>
+
+        <p>
+          Created by Nabila  © 2026 Kopi Senja
+        </p>
+
+    </footer>
+
+
+</body>
+</html>
